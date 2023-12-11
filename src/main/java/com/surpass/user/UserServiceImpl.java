@@ -1,4 +1,4 @@
-package org.hyperskill.demo;
+package com.surpass.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

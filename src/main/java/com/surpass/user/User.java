@@ -1,4 +1,4 @@
-package org.hyperskill.demo;
+package com.surpass.user;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
