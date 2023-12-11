@@ -15,13 +15,13 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "string_id")
     private String stringId;
 
-    @Column
+    @Column(name = "body_part")
     private String bodyPart;
 
-    @Column
+    @Column(name = "weight_connection")
     private String weightConnection;
 
     @Column
