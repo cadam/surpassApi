@@ -1,6 +1,7 @@
 package com.surpass.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<User> getAllUsers(Pageable page) {
+        return userService.getAllUsers(page).toList();
     }
 
     @GetMapping("/users/{id}")

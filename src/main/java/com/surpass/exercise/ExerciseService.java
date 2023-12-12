@@ -1,10 +1,13 @@
 package com.surpass.exercise;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 public interface ExerciseService {
 
-    List<Exercise> getAllExercises();
+    Page<Exercise> getAllExercises(Pageable page);
 
     Exercise getExerciseById(Long id);
 

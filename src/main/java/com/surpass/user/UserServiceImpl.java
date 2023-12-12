@@ -1,6 +1,8 @@
 package com.surpass.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +17,9 @@ public class UserServiceImpl implements UserService {
 //    gets
 
     @Override
-    public List<User> getAllUsers() {
+    public Page<User> getAllUsers(Pageable page) {
 
-        return userRepo.findAll();
+        return userRepo.findAll(page);
 
     }
 
