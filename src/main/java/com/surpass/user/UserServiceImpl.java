@@ -1,11 +1,11 @@
 package com.surpass.user;
 
+import com.surpass.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
             return user.get();
         }
 
-        throw new RuntimeException("User is not found for the id " + id);
+        throw new ResourceNotFoundException("User is not found for the id " + id);
 
     }
 

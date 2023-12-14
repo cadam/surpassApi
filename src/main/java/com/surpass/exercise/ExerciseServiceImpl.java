@@ -1,5 +1,6 @@
 package com.surpass.exercise;
 
+import com.surpass.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,7 @@ public class ExerciseServiceImpl implements ExerciseService {
             return exercise.get();
         }
 
-        throw new RuntimeException("Exercise is not found for the id " + id);
+        throw new ResourceNotFoundException("Exercise is not found for the id " + id);
 
     }
 

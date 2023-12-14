@@ -1,5 +1,6 @@
 package com.surpass.user;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class UserController {
 //    post user
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/users/add")
-    public User addUser(@RequestBody User user) {
+    public User addUser(@Valid @RequestBody User user) {
 
         return userService.addUser(user);
 

@@ -1,5 +1,6 @@
 package com.surpass.exercise;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,7 @@ public class ExerciseController {
 //    post exercise
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/exercises/add")
-    public Exercise addExercise(@RequestBody Exercise exercise) {
+    public Exercise addExercise(@Valid @RequestBody Exercise exercise) {
 
         return exerciseService.addExercise(exercise);
 

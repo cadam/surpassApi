@@ -1,6 +1,8 @@
 package com.surpass.user;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,9 +18,12 @@ public class User {
     private Long id;
 
     @Column(name = "name")
+    @NotNull(message = "The name of the user is mandatory.")
     private String name;
 
     @Column(name = "email")
+    @Email(message = "The email value is not a valid one.")
+    @NotNull(message = "The email is mandatory.")
     private String email;
 
     @Column(name = "created_at", nullable = false, updatable = false)

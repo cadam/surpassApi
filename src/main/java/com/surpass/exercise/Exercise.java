@@ -1,6 +1,8 @@
 package com.surpass.exercise;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,18 +18,28 @@ public class Exercise {
     private Long id;
 
     @Column(name = "string_id")
+    @NotNull(message = "stringId shall not be null")
+    @NotBlank(message = "stringId shall not be blank")
     private String stringId;
 
     @Column(name = "body_part")
+    @NotNull(message = "body_part shall not be null")
+    @NotBlank(message = "body_part shall not be blank")
     private String bodyPart;
 
     @Column(name = "weight_connection")
+    @NotNull(message = "weight_connection shall not be null")
+    @NotBlank(message = "weight_connection shall not be blank")
     private String weightConnection;
 
     @Column
+    @NotNull(message = "type shall not be null")
+    @NotBlank(message = "type shall not be blank")
     private String type;
 
     @Column
+    @NotNull(message = "name shall not be null")
+    @NotBlank(message = "name shall not be blank")
     private String name;
 
     @Column(name = "created_at", nullable = false, updatable = false)
