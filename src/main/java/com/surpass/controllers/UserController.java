@@ -29,8 +29,8 @@ public class UserController {
     }
 
     @GetMapping("/users/count")
-    public long getUsersCount() {
-        return userService.getUsersCount();
+    public String getUsersCount() {
+        return "{ \"count\": " + userService.getUsersCount() + "}";
     }
 
 //    delete user by id
