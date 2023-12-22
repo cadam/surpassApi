@@ -1,9 +1,9 @@
-package com.surpass.user;
+package com.surpass.services;
 
+import com.surpass.entities.User;
+import com.surpass.entities.UserModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public interface UserService {
 
@@ -15,7 +15,7 @@ public interface UserService {
 
     long getUsersCount();
 
-    User addUser(User user);
+    User createUser(UserModel user);
 
     User updateUser(Long id, User user);
 

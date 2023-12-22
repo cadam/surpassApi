@@ -1,4 +1,4 @@
-package com.surpass.exercise;
+package com.surpass.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

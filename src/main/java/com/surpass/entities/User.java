@@ -1,8 +1,10 @@
-package com.surpass.user;
+package com.surpass.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,7 +12,6 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "user")
-
 public class User {
 
     @Id
@@ -21,10 +22,16 @@ public class User {
     @NotNull(message = "The name of the user is mandatory.")
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @Email(message = "The email value is not a valid one.")
     @NotNull(message = "The email is mandatory.")
     private String email;
+
+    @JsonIgnore
+    @Size(min = 5, message = "Password should be at least 5 characters")
+    private String password;
+
+    private Long age;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
@@ -34,29 +41,27 @@ public class User {
     @UpdateTimestamp
     private Timestamp updatedAt;
 
-    public User(Long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-
     public User() {
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof User;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public String getName() {
+    public @NotNull(message = "The name of the user is mandatory.") String getName() {
         return this.name;
     }
 
-    public String getEmail() {
+    public @Email(message = "The email value is not a valid one.") @NotNull(message = "The email is mandatory.") String getEmail() {
         return this.email;
+    }
+
+    public @Size(min = 5, message = "Password should be at least 5 characters") String getPassword() {
+        return this.password;
+    }
+
+    public Long getAge() {
+        return this.age;
     }
 
     public Timestamp getCreatedAt() {
@@ -71,12 +76,21 @@ public class User {
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(@NotNull(message = "The name of the user is mandatory.") String name) {
         this.name = name;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(@Email(message = "The email value is not a valid one.") @NotNull(message = "The email is mandatory.") String email) {
         this.email = email;
+    }
+
+    @JsonIgnore
+    public void setPassword(@Size(min = 5, message = "Password should be at least 5 characters") String password) {
+        this.password = password;
+    }
+
+    public void setAge(Long age) {
+        this.age = age;
     }
 
     public void setCreatedAt(Timestamp createdAt) {
@@ -101,6 +115,12 @@ public class User {
         final Object this$email = this.getEmail();
         final Object other$email = other.getEmail();
         if (this$email == null ? other$email != null : !this$email.equals(other$email)) return false;
+        final Object this$password = this.getPassword();
+        final Object other$password = other.getPassword();
+        if (this$password == null ? other$password != null : !this$password.equals(other$password)) return false;
+        final Object this$age = this.getAge();
+        final Object other$age = other.getAge();
+        if (this$age == null ? other$age != null : !this$age.equals(other$age)) return false;
         final Object this$createdAt = this.getCreatedAt();
         final Object other$createdAt = other.getCreatedAt();
         if (this$createdAt == null ? other$createdAt != null : !this$createdAt.equals(other$createdAt)) return false;
@@ -108,6 +128,10 @@ public class User {
         final Object other$updatedAt = other.getUpdatedAt();
         if (this$updatedAt == null ? other$updatedAt != null : !this$updatedAt.equals(other$updatedAt)) return false;
         return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof User;
     }
 
     public int hashCode() {
@@ -119,6 +143,10 @@ public class User {
         result = result * PRIME + ($name == null ? 43 : $name.hashCode());
         final Object $email = this.getEmail();
         result = result * PRIME + ($email == null ? 43 : $email.hashCode());
+        final Object $password = this.getPassword();
+        result = result * PRIME + ($password == null ? 43 : $password.hashCode());
+        final Object $age = this.getAge();
+        result = result * PRIME + ($age == null ? 43 : $age.hashCode());
         final Object $createdAt = this.getCreatedAt();
         result = result * PRIME + ($createdAt == null ? 43 : $createdAt.hashCode());
         final Object $updatedAt = this.getUpdatedAt();
@@ -127,6 +155,6 @@ public class User {
     }
 
     public String toString() {
-        return "User(id=" + this.getId() + ", name=" + this.getName() + ", email=" + this.getEmail() + ", createdAt=" + this.getCreatedAt() + ", updatedAt=" + this.getUpdatedAt() + ")";
+        return "User(id=" + this.getId() + ", name=" + this.getName() + ", email=" + this.getEmail() + ", password=" + this.getPassword() + ", age=" + this.getAge() + ", createdAt=" + this.getCreatedAt() + ", updatedAt=" + this.getUpdatedAt() + ")";
     }
 }

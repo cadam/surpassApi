@@ -1,5 +1,6 @@
 package com.surpass.exceptions;
 
+import com.surpass.entities.ErrorObject;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -83,5 +83,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         body.put("messages", errors);
 
         return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ItemAlreadyExistsException.class)
+    public ResponseEntity<ErrorObject> handleItemExistsException(
+            ItemAlreadyExistsException ex, WebRequest request
+    ) {
+
+        ErrorObject errorObject = new ErrorObject();
+
+        errorObject.setStatusCode(HttpStatus.CONFLICT.value());
+        errorObject.setMessage(ex.getMessage());
+        errorObject.setTimestamp(new Date());
+
+        return new ResponseEntity<ErrorObject>(errorObject, HttpStatus.CONFLICT);
+
     }
 }

@@ -1,8 +1,9 @@
-package com.surpass.exercise;
+package com.surpass.controllers;
 
+import com.surpass.entities.Exercise;
+import com.surpass.services.ExerciseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

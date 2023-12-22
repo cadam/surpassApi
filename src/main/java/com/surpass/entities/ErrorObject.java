@@ -1,4 +1,4 @@
-package com.surpass.exceptions;
+package com.surpass.entities;
 
 import java.util.Date;
 

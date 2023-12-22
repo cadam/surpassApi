@@ -1,12 +1,14 @@
-package com.surpass.exercise;
+package com.surpass.serviceImplementations;
 
 import com.surpass.exceptions.ResourceNotFoundException;
+import com.surpass.entities.Exercise;
+import com.surpass.repositories.ExerciseRepository;
+import com.surpass.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,7 +51,9 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public void deleteExerciseById(Long id) {
 
-        exerciseRepo.deleteById(id);
+        Exercise exercise = getExerciseById(id);
+
+        exerciseRepo.delete(exercise);
 
     }
 
