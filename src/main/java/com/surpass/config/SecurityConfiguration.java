@@ -29,7 +29,8 @@ public class SecurityConfiguration {
 
     public static final String[] ENDPOINTS_WHITELIST = {
             "/login",
-            "/register"
+            "/register",
+            "/users/count"
     };
 
     public static final String REGISTER_URL = "/register";
